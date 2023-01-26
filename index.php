@@ -1,3 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabella Azienda</title>
+    <style>
+    /* Stili per la tabella */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    /* Stili per le celle */
+    td, th {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+    }
+    /* Stili per l'intestazione della tabella */
+    th {
+        background-color: #00B050;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
 <?php
     class Persona {
         protected $nome;
@@ -16,28 +43,13 @@
 
         // tabella 
         public function getHTML(){
-            echo     "<table>
-                        <tr>
-                            <td>Nome:</td>
-                            <td>".$this->nome."</td>
-                        </tr>
-                        <tr>
-                            <td>Cognome:</td>
-                            <td>".$this->cognome."</td>
-                        </tr>
-                        <tr>
-                            <td>Data di nascita:</td>
-                            <td>".$this->data_nascita."</td>
-                        </tr>
-                        <tr>
-                            <td>Luogo di nascita:</td>
-                            <td>".$this->luogo_nascita."</td>
-                        </tr>
-                        <tr>
-                            <td>Codice Fiscale:</td>
-                            <td>".$this->codice_fiscale."</td>
-                        </tr>
-                    </table>";
+                    echo    "   <tr>
+                                    <td>".$this->nome."</td>
+                                    <td>".$this->cognome."</td>
+                                    <td>".$this->data_nascita."</td>
+                                    <td>".$this->luogo_nascita."</td>
+                                    <td>".$this->codice_fiscale."</td>
+                                </tr>";
         }
     }
     
@@ -51,37 +63,20 @@
         }
     
         public function getHTML() {
-            echo     "<table>
-                        <tr>
-                            <td>Nome:</td>
-                            <td>".$this->nome."</td>
-                        </tr>
-                        <tr>
-                            <td>Cognome:</td>
-                            <td>".$this->cognome."</td>
-                        </tr>
-                        <tr>
-                            <td>Data di nascita:</td>
-                            <td>".$this->data_nascita."</td>
-                        </tr>
-                        <tr>
-                            <td>Luogo di nascita:</td>
-                            <td>".$this->luogo_nascita."</td>
-                        </tr>
-                        <tr>
-                            <td>Codice Fiscale:</td>
-                            <td>".$this->codice_fiscale."</td>
-                        </tr>
-                        <tr>
-                            <td>Data di assunzione:</td>
-                            <td>".$this->data_assunzione."</td>
-                        </tr>
-                        <tr>
-                            <td>Stipendio annuale:</td>
-                            <td>".$this->stipendio->stipendio_annuale()."</td>
-                        </tr>
-                    </table>";
+                    echo    "
+                                <tr>
+                                    <td>".$this->nome."</td>
+                                    <td>".$this->cognome."</td>
+                                    <td>".$this->data_nascita."</td>
+                                    <td>".$this->luogo_nascita."</td>
+                                    <td>".$this->codice_fiscale."</td>
+                                    <td>".$this->data_assunzione."</td>
+                                    <td>".$this->stipendio->stipendio_annuale()."</td>
+                                </tr>
+                            ";
         }
+
+        
     }
     
     class Capo extends Persona {
@@ -93,41 +88,16 @@
             $this->dividendo = $dividendo;
         }
         public function getHTML() {
-            echo     "<table>
-                        <tr>
-                            <td>Nome:</td>
+            echo    "   <tr>
                             <td>".$this->nome."</td>
-                        </tr>
-                        <tr>
-                            <td>Cognome:</td>
                             <td>".$this->cognome."</td>
-                        </tr>
-                        <tr>
-                            <td>Data di nascita:</td>
                             <td>".$this->data_nascita."</td>
-                        </tr>
-                        <tr>
-                            <td>Luogo di nascita:</td>
                             <td>".$this->luogo_nascita."</td>
-                        </tr>
-                        <tr>
-                            <td>Codice Fiscale:</td>
                             <td>".$this->codice_fiscale."</td>
-                        </tr>
-                        <tr>
-                            <td>Bonus:</td>
                             <td>".$this->bonus."</td>
-                        </tr>
-                        <tr>
-                            <td>Dividendo:</td>
                             <td>".$this->dividendo."</td>
-                        </tr>
-                        <tr>
-                            <td>Reddito Annuale:</td>
                             <td>".$this->reddito_annuale()."</td>
-                        </tr>
-                        
-                    </table>";
+                        </tr>";
         }
         public function reddito_annuale() {
         return $reddito_annuale = $this->dividendo * 12 + $this->bonus;
@@ -150,18 +120,55 @@
             return $stipendio_annuale;
         }
     }
-    echo 'PERSONA:';
+    echo '<h3>PERSONA:</h3>';
+    echo '<table>
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Data di nascita</th>
+                <th>Luogo di nascita</th>
+                <th>Codice Fiscale</th>
+            </tr>';
     $persona = new Persona("Mario", "Rossi", "01/01/2000", "Roma", "MRARSS00A01H501Q");
     echo $persona->getHTML();
+    echo '</table>';
     echo '<br>';
-    echo 'IMPIEGATO:';
+    echo '<br>';
+    echo '<h3>IMPIEGATO:</h3>';
+    echo "<table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Data di nascita</th>
+                    <th>Luogo di nascita</th>
+                    <th>Codice Fiscale</th>
+                    <th>Data di Assunzione</th>
+                    <th>Stipendio Annuale</th>
+                </tr>";
     $impiegato = new Impiegato("Mario", "Rossi", "01/01/2000", "Roma", "MRARSS00A01H501Q", "01/01/2022", 2000, true, true);
     $impiegato->getHTML();
     echo '<br>';
+    echo '<br>';
     $impiegato = new Impiegato("Luigi", "Bianchi", "01/01/2000", "Roma", "MRARSS00A01H501Q", "01/01/2022", 2000, false, false);
     $impiegato->getHTML();
+    echo '</table>';
     echo '<br>';
-    echo 'CAPO:';
+    echo '<br>';
+    echo '<table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Data di nascita</th>
+                    <th>Luogo di nascita</th>
+                    <th>Codice Fiscale</th>
+                    <th>Bonus</th>
+                    <th>Dividendo</th>
+                    <th>Reddito Annuale</th>
+                </tr>';
+    echo '<h3>CAPO:</h3>';
     $capo = new Capo("Romina", "Yari", "01/01/2000", "Roma", "MRARSS00A01H501Q", 1500, 2500);
     $capo->getHTML();
+    echo '</table>';
 ?>
+</body>
+</html>

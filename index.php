@@ -89,8 +89,48 @@
         private $dividendo;
         public function __construct($nome, $cognome, $data_nascita, $luogo_nascita, $codice_fiscale, $bonus, $dividendo) {
             parent::__construct($nome, $cognome, $data_nascita, $luogo_nascita, $codice_fiscale, );
-            $this->$bonus = $bonus;
-            $this->$dividendo = $dividendo;
+            $this->bonus = $bonus;
+            $this->dividendo = $dividendo;
+        }
+        public function getHTML() {
+            echo     "<table>
+                        <tr>
+                            <td>Nome:</td>
+                            <td>".$this->nome."</td>
+                        </tr>
+                        <tr>
+                            <td>Cognome:</td>
+                            <td>".$this->cognome."</td>
+                        </tr>
+                        <tr>
+                            <td>Data di nascita:</td>
+                            <td>".$this->data_nascita."</td>
+                        </tr>
+                        <tr>
+                            <td>Luogo di nascita:</td>
+                            <td>".$this->luogo_nascita."</td>
+                        </tr>
+                        <tr>
+                            <td>Codice Fiscale:</td>
+                            <td>".$this->codice_fiscale."</td>
+                        </tr>
+                        <tr>
+                            <td>Bonus:</td>
+                            <td>".$this->bonus."</td>
+                        </tr>
+                        <tr>
+                            <td>Dividendo:</td>
+                            <td>".$this->dividendo."</td>
+                        </tr>
+                        <tr>
+                            <td>Reddito Annuale:</td>
+                            <td>".$this->reddito_annuale()."</td>
+                        </tr>
+                        
+                    </table>";
+        }
+        public function reddito_annuale() {
+        return $reddito_annuale = $this->dividendo * 12 + $this->bonus;
         }
     }
 
@@ -110,13 +150,18 @@
             return $stipendio_annuale;
         }
     }
-
+    echo 'PERSONA:';
     $persona = new Persona("Mario", "Rossi", "01/01/2000", "Roma", "MRARSS00A01H501Q");
     echo $persona->getHTML();
-    
+    echo '<br>';
+    echo 'IMPIEGATO:';
     $impiegato = new Impiegato("Mario", "Rossi", "01/01/2000", "Roma", "MRARSS00A01H501Q", "01/01/2022", 2000, true, true);
     $impiegato->getHTML();
-
+    echo '<br>';
+    $impiegato = new Impiegato("Luigi", "Bianchi", "01/01/2000", "Roma", "MRARSS00A01H501Q", "01/01/2022", 2000, false, false);
+    $impiegato->getHTML();
+    echo '<br>';
+    echo 'CAPO:';
+    $capo = new Capo("Romina", "Yari", "01/01/2000", "Roma", "MRARSS00A01H501Q", 1500, 2500);
+    $capo->getHTML();
 ?>
-
-
